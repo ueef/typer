@@ -1,0 +1,13 @@
+{
+  "name": "ueef/typer",
+  "type": "library",
+  "description": "",
+  "require": {
+    "php": "^7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ueef\\Typer\\": "src"
+    }
+  }
+}
