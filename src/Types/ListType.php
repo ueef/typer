@@ -16,7 +16,7 @@ namespace Ueef\Typer\Types {
         private $type;
 
 
-        public function __construct(TypeInterface $type, bool $required = false, ?string $default = null)
+        public function __construct(TypeInterface $type, $required = false, $default = null)
         {
             $this->type = $type;
             $this->required = $required;

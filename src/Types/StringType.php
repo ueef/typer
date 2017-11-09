@@ -13,7 +13,7 @@ namespace Ueef\Typer\Types {
         private $default = '';
 
 
-        public function __construct(bool $required = false, ?string $default = null)
+        public function __construct($required = false, $default = null)
         {
             $this->required = $required;
 

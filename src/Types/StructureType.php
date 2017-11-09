@@ -13,7 +13,7 @@ namespace Ueef\Typer\Types {
         private $structure = [];
 
 
-        public function __construct(array $structure, bool $required = false)
+        public function __construct(array $structure, $required = false)
         {
             $this->required = $required;
             $this->structure = $structure;
