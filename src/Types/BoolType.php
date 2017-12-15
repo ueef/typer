@@ -24,16 +24,10 @@ namespace Ueef\Typer\Types {
 
         public function convert($value)
         {
-            if (!is_float($value)) {
-                if (is_numeric($value)) {
-                    $value = (float) $value;
-                } else {
-                    $value = null;
-                }
-
-                if (null === $value && $this->required) {
-                    $value = $this->default;
-                }
+            if (null !== $value) {
+                $value = (bool) $value;
+            } elseif ($this->required) {
+                $value = $this->default;
             }
 
             return $value;
