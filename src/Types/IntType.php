@@ -4,13 +4,13 @@ namespace Ueef\Typer\Types {
 
     use Ueef\Typer\Interfaces\TypeInterface;
 
-    class BoolType implements TypeInterface
+    class IntType implements TypeInterface
     {
-        /** @var boolean */
+        /** @var integer */
         private $default;
 
 
-        public function __construct(bool $default = false)
+        public function __construct($default = 0)
         {
             $this->default = $default;
         }
@@ -21,8 +21,8 @@ namespace Ueef\Typer\Types {
                 $value = $this->default;
             }
 
-            if (!is_bool($value)) {
-                $value = (bool) $value;
+            if (!is_integer($value)) {
+                $value = (int) $value;
             }
 
             return $value;

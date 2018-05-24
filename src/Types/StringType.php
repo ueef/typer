@@ -6,32 +6,23 @@ namespace Ueef\Typer\Types {
 
     class StringType implements TypeInterface
     {
-        /** @var boolean */
-        private $required;
-
-        /** @var integer */
-        private $default = '';
+        /** @var string */
+        private $default;
 
 
-        public function __construct($required = false, $default = null)
+        public function __construct($default = '')
         {
-            $this->required = $required;
-
-            if (null !== $default) {
-                $this->default = $default;
-            }
+            $this->default = $default;
         }
 
         public function convert($value)
         {
-            $value = (string) $value;
-
-            if (!strlen($value)) {
-                $value = null;
+            if (null === $value) {
+                $value = $this->default;
             }
 
-            if (null === $value && $this->required) {
-                $value = $this->default;
+            if (!is_string($value)) {
+                $value = (string) $value;
             }
 
             return $value;

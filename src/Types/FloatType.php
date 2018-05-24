@@ -6,34 +6,23 @@ namespace Ueef\Typer\Types {
 
     class FloatType implements TypeInterface
     {
-        /** @var boolean */
-        private $required;
-
         /** @var float */
-        private $default = 0;
+        private $default;
 
 
-        public function __construct($required = false, $default = null)
+        public function __construct(float $default = 0.0)
         {
-            $this->required = $required;
-
-            if (null !== $default) {
-                $this->default = $default;
-            }
+            $this->default = $default;
         }
 
         public function convert($value)
         {
-            if (!is_float($value)) {
-                if (is_numeric($value)) {
-                    $value = (float) $value;
-                } else {
-                    $value = null;
-                }
+            if (null === $value) {
+                $value = $this->default;
+            }
 
-                if (null === $value && $this->required) {
-                    $value = $this->default;
-                }
+            if (!is_float($value)) {
+                $value = (float) $value;
             }
 
             return $value;
