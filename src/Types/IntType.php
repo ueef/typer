@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Ueef\Typer\Types {
 
@@ -17,15 +18,15 @@ namespace Ueef\Typer\Types {
 
         public function convert($value)
         {
-            if (null === $value) {
-                $value = $this->default;
+            if (is_integer($value)) {
+                return $value;
             }
 
-            if (!is_integer($value)) {
-                $value = (int) $value;
+            if (is_numeric($value)) {
+                return (int) $value;
             }
 
-            return $value;
+            return $this->default;
         }
     }
 }

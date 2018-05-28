@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Ueef\Typer\Types {
 
@@ -17,7 +18,7 @@ namespace Ueef\Typer\Types {
          * @param $structure TypeInterface[]
          * @param $required bool
          */
-        public function __construct(array $structure, bool $required)
+        public function __construct(array $structure, bool $required = false)
         {
             $this->structure = $structure;
             $this->required = $required;
@@ -26,17 +27,18 @@ namespace Ueef\Typer\Types {
         public function convert($value)
         {
             if (!is_array($value)) {
-                $value = [];
+                if ($this->required) {
+                    $value = [];
+                } else {
+                    return null;
+                }
             }
 
             $_value = [];
             foreach ($this->structure as $key => $type) {
-                if (!key_exists($key, $value)) {
-                    $_value[$key] = null;
-                }
-
-                $_value[$key] = $type->convert($value[$key]);
+                $_value[$key] = $type->convert($value[$key] ?? null);
             }
+
 
             return $_value;
         }
