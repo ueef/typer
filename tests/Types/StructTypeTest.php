@@ -11,7 +11,7 @@ namespace Ueef\Typer\Tests\Types {
     use Ueef\Typer\Types\StringType;
     use Ueef\Typer\Types\StructType;
 
-    class StructuTypeTest extends TestCase
+    class StructTypeTest extends TestCase
     {
         /**
          * @param $struct
